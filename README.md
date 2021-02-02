@@ -1,5 +1,5 @@
 # RickAndMortyApp
-A quick made app to show some code to intive
+A quickly made app to show some code to intive
 
 <center> <img src="https://user-images.githubusercontent.com/48637183/106616456-58670b00-654c-11eb-950a-e08fdb97c531.png" width="90%"></img>  </center>
 
