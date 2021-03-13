@@ -13,9 +13,10 @@ import dagger.android.HasAndroidInjector
 
 
 @Beta
-abstract class DaggerAppCompatActivityKT : AppCompatActivity, HasAndroidInjector {
+abstract class DaggerAppCompatActivity : AppCompatActivity, HasAndroidInjector {
 
-    var androidInjector: DispatchingAndroidInjector<Any>? = null
+    @Inject
+    lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
     constructor() : super() {}
 

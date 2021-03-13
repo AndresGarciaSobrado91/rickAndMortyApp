@@ -29,7 +29,7 @@ class AppModule {
 
     @Singleton
     @Provides
-    open fun prvideGetCharactersUseCase(
+    open fun provideGetCharactersUseCase(
         characterRepository: CharacterRepository
     ): GetCharactersUseCase = GetCharactersUseCase(characterRepository)
 }
