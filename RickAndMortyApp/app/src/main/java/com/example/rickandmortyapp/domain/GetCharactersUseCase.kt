@@ -28,8 +28,12 @@ open class GetCharactersUseCase @Inject constructor(
     }
 
     private suspend fun getData(){
-        val response = characterRepository.getCharacters("1,2")
-        result.postValue(GetCharactersUseCaseResult.Result(response.body()))
+        try {
+            val response = characterRepository.getCharacters("1,2")
+            result.postValue(GetCharactersUseCaseResult.Result(response.body()))
+        } catch (ex: Exception){
+            result.postValue(GetCharactersUseCaseResult.Error(ex.message))
+        }
     }
 }
 
@@ -44,4 +48,5 @@ sealed class GetCharactersUseCaseParams{
 sealed class GetCharactersUseCaseResult {
     object Loading : GetCharactersUseCaseResult()
     data class Result(val characterList: List<Character>?) : GetCharactersUseCaseResult()
+    data class Error(val message: String?) : GetCharactersUseCaseResult()
 }

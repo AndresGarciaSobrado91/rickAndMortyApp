@@ -1,23 +1,19 @@
 package com.example.rickandmortyapp.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.rickandmortyapp.R
 import com.example.rickandmortyapp.databinding.FragmentHomeBinding
 import com.example.rickandmortyapp.domain.GetCharactersUseCaseResult
 import com.example.rickandmortyapp.ui.MainViewModel
 import com.example.rickandmortyapp.ui.base.BaseDaggerFragment
-import com.example.rickandmortyapp.util.ui.LoadingViewManager
 import javax.inject.Inject
 
 class HomeFragment : BaseDaggerFragment() {
@@ -37,6 +33,10 @@ class HomeFragment : BaseDaggerFragment() {
                     viewModel.setCharacterList(result.characterList)
                     loadData()
                 }
+            }
+            is GetCharactersUseCaseResult.Error -> {
+                hideLoading()
+                Toast.makeText(context,result.message,Toast.LENGTH_LONG).show()
             }
         }
     }
